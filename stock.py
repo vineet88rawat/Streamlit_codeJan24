@@ -4,11 +4,20 @@ import datetime
 
 
 st.title("Stock Price Analyser")
-stock_name = st.text_input("which stock do you want to analyse","MSFT")
 
-ticker_data=yf.Ticker(stock_name)
-start_date=st.date_input("Please enter Starting Date",datetime.date(2023,12,1))
-end_date=st.date_input("Please enter Ending Date",datetime.date(2024,12,1))
+col1,col2,col3=st.columns(3)
+
+with col1:
+   stock_name = st.text_input("which stock do you want to analyse","MSFT")
+
+
+   ticker_data=yf.Ticker(stock_name)
+
+with col2:
+   start_date=st.date_input("Please enter Starting Date",datetime.date(2023,12,1))
+
+with col3:
+   end_date=st.date_input("Please enter Ending Date",datetime.date(2024,12,1))
 
 ticker_df =ticker_data.history(period='1d',start=start_date,end=end_date)
 
